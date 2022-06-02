@@ -9,15 +9,36 @@ const io = new Server(server,{
     }
 })
 
+app.use(express.json())
 
 const rooms=new Map()
 
-app.get('/users',(req,res)=>{
+app.get('/rooms',(req,res)=>{
 
     res.json(rooms)
 })
 
+app.post('/rooms',(req,res)=>{
+const {roomId,userName}=req.body
+
+    if (!rooms.has(roomId)){
+        rooms.set(
+            roomId, new Map([
+                ['users',new Map],
+                ['messages',[]]
+            ])
+        )
+    }
+
+    res.json(rooms)
+    
+})
+
 io.on('connection', (socket) => {
+    
+    socket.on('ROOM:JOIN',(data)=>{
+        console.log('data',data)
+    })
     console.log('a user connected',socket.id);
 });
 
