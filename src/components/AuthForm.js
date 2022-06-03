@@ -1,5 +1,4 @@
 import React,{ useState } from 'react'
-import socket from '../socket'
 import axios from 'axios'
 import {Button, Form} from "react-bootstrap";
 
@@ -23,7 +22,7 @@ const AuthForm = ({onLogin}) => {
     }
 
     return (
-        <Form style={{marginTop:'50%'}}>
+        <Form >
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Room ID</Form.Label>
                 <Form.Control
