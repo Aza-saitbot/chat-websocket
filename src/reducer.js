@@ -1,12 +1,11 @@
-export default (state,action)=>{
-
+export const reducer= (state, action) => {
     switch (action.type) {
         case "JOINED":
             return {
                 ...state,
-                joined:true,
-                userName: action.payload.userName,
-                roomId:action.payload.roomId
+                joined: true,
+                roomId: action.payload.roomId,
+                userName:action.payload.userName
             }
         case "SET_USERS":
             return {
@@ -26,6 +25,5 @@ export default (state,action)=>{
             }
         default:
             return state
-
     }
 }

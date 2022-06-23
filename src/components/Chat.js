@@ -9,7 +9,7 @@ const Chat = ({users,messages,userName,roomId,onAddMessage}) => {
     const messageRef=useRef(null)
 
     const onSubmit = () => {
-        socket.emit('ROOM:ADD_MESSAGE',{
+        socket.emit('ROOM:NEW_MESSAGE',{
             userName,
             roomId,
             text:messageValue
@@ -21,13 +21,14 @@ const Chat = ({users,messages,userName,roomId,onAddMessage}) => {
     useEffect(()=>{
         messageRef.current.scrollTo(0,99999)
     },[messages])
+    console.log('users CHAT',users)
 
     return (
         <div className="chat">
             <div className="chat-users">
                 Комната: <b>{roomId}</b>
                 <hr/>
-                <b>Онлайн ({users.length}):</b>
+                <b>Онлайн ({users?.length}):</b>
                 <ul>
                     {users.map((name,index)=>
                         <li key={name+index}>{name}</li>
